@@ -49,9 +49,11 @@
 
 // ----------------------------------------------------------
 
-// Task 3: Filter range "in place"
+// Task 3: Filter range "in place" -- completed
 
-// Write a function filterRangeInPlace(arr, a, b) that gets an array arr and removes from it all values except those that are between a and b. The test is: a ≤ arr[i] ≤ b.
+// Write a function filterRangeInPlace(arr, a, b) that gets an array arr and 
+// removes from it all values except those that are between a and b. The test 
+// is: a ≤ arr[i] ≤ b.
 
 // The function should only modify the array. It should not return anything.
 
@@ -59,29 +61,54 @@
 
 // let arr = [5, 3, 8, 1];
 
+// function filterRangeInPlace(arr, a, b) {
+//      for (let i=0; i < arr.length; i++) {
+//        let value = arr[i];
+//        if (!(a <= value && value <= b)) {
+//         arr.splice(i, 1);
+//         i--;
+//        }
+//      }
+// }
+
+// solution 2: 
+// function filterRangeInPlace(arr, a, b) {
+    
+//     arr.forEach((value, index, arr) =>  {
+//         if (!(a <= value && value <= b)) {
+//                    arr.splice(index, 1);
+//                     index--;
+//         }
+//     });
+// }
+
 // filterRangeInPlace(arr, 1, 4); // removed the numbers except from 1 to 4
 
 // alert( arr ); // [3, 1]
 
 // ----------------------------------------------------------
 
-// Task 4: Sort in decreasing order
+// Task 4: Sort in decreasing order -- completed
 
-// let arr = [5, 2, 1, -10, 8];
+//  let arr = [5, 2, 1, -10, 8];
 
-// // ... your code to sort it in decreasing order
+//  arr.sort((a, b) => b - a);
 
-// alert( arr ); // 8, 5, 2, 1, -10
+//  alert( arr ); // 8, 5, 2, 1, -10
 
 // ----------------------------------------------------------
 
-// Task 5: Copy and sort array
+// Task 5: Copy and sort array -- completed
 
 // We have an array of strings arr. We’d like to have a sorted copy of it, but keep arr unmodified.
 
 // Create a function copySorted(arr) that returns such a copy.
 
 // let arr = ["HTML", "JavaScript", "CSS"];
+
+// function copySorted(arr) {
+//     return arr.slice().sort();
+// }
 
 // let sorted = copySorted(arr);
 
@@ -90,9 +117,10 @@
 
 // ----------------------------------------------------------
 
-// Task 6: Map to names
+// Task 6: Map to names -- completed
 
-// You have an array of user objects, each one has user.name. Write the code that converts it into an array of names.
+// You have an array of user objects, each one has user.name. 
+// Write the code that converts it into an array of names.
 
 // For instance:
 
@@ -102,13 +130,13 @@
 
 // let users = [ john, pete, mary ];
 
-// let names = /* ... your code */
+// let names = users.map(user => user.name);
 
 // alert( names ); // John, Pete, Mary
 
 // ----------------------------------------------------------
 
-// Task 7: Map to Objects 
+// Task 7: Map to Objects -- completed 
 
 // You have an array of user objects, each one has name, surname 
 // and id.
@@ -125,15 +153,18 @@
 
 // let users = [ john, pete, mary ];
 
-// let usersMapped = /* ... your code ... */
+// let usersMapped = users.map(user => ({
+//     fullName: `${user.name} ${user.surname}`, 
+//     id: user.id,
+//     }));
 
-// /*
-// usersMapped = [
-//   { fullName: "John Smith", id: 1 },
-//   { fullName: "Pete Hunt", id: 2 },
-//   { fullName: "Mary Key", id: 3 }
-// ]
-// */
+// // /*
+// // usersMapped = [
+// //   { fullName: "John Smith", id: 1 },
+// //   { fullName: "Pete Hunt", id: 2 },
+// //   { fullName: "Mary Key", id: 3 }
+// // ]
+// // */
 
 // alert( usersMapped[0].id ) // 1
 // alert( usersMapped[0].fullName ) // John Smith
@@ -142,7 +173,7 @@
 
 // ----------------------------------------------------------
 
-// Task 8: Sort users by age 
+// Task 8: Sort users by age -- completed
 
 // Write the function sortByAge(users) that gets an array of objects
 //  with the age property and sorts them by age.
@@ -154,6 +185,10 @@
 // let mary = { name: "Mary", age: 28 };
 
 // let arr = [ pete, john, mary ];
+
+// function sortByAge(users) {
+//     users.sort((a, b) => a.age - b.age);
+// }
 
 // sortByAge(arr);
 
@@ -189,7 +224,7 @@
 
 // ----------------------------------------------------------
 
-// Task 10: Get average age
+// Task 10: Get average age -- completed
 
 // Write the function getAverageAge(users) that gets an array of 
 // objects with property age and returns the average age.
@@ -203,6 +238,11 @@
 // let mary = { name: "Mary", age: 29 };
 
 // let arr = [ john, pete, mary ];
+
+// function getAverageAge(users) {
+//     // must set initial val to 0, otherwise it returns the 1st elem which is an object {john}
+//     return users.reduce((total, user) => total + user.age, 0) / users.length;
+// }
 
 // alert( getAverageAge(arr) ); // (25 + 30 + 29) / 3 = 28
 
@@ -218,7 +258,13 @@
 // For instance:
 
 // function unique(arr) {
-//   /* your code */
+//     let result = [];
+//     for (let item of arr) {
+//         if (!result.includes(item)) {
+//             result.push(item);
+//         }
+//     }
+//     return result;
 // }
 
 // let strings = ["Hare", "Krishna", "Hare", "Krishna",
@@ -229,7 +275,7 @@
 
 // // ----------------------------------------------------------
 
-// Task 12: Create keyed object from array
+// Task 12: Create keyed object from array -- completed
 
 // Let’s say we received an array of users in the form 
 //{id:..., name:..., age:... }.
@@ -239,23 +285,31 @@
 
 // For example:
 
-// let users = [
-//   {id: 'john', name: "John Smith", age: 20},
-//   {id: 'ann', name: "Ann Smith", age: 24},
-//   {id: 'pete', name: "Pete Peterson", age: 31},
-// ];
+let users = [
+  {id: 'john', name: "John Smith", age: 20},
+  {id: 'ann', name: "Ann Smith", age: 24},
+  {id: 'pete', name: "Pete Peterson", age: 31},
+];
 
-// let usersById = groupById(users);
+let usersById = groupById(users);
 
-// /*
-// // after the call we should have:
+function groupById(arr) {
+    return arr.reduce((acc, curr) => {
+        acc[curr.id] = curr;
+        return acc;
+    }, {})
+}
+console.log(usersById);
 
-// usersById = {
-//   john: {id: 'john', name: "John Smith", age: 20},
-//   ann: {id: 'ann', name: "Ann Smith", age: 24},
-//   pete: {id: 'pete', name: "Pete Peterson", age: 31},
-// }
-// */
+/*
+// after the call we should have:
+
+usersById = {
+  john: {id: 'john', name: "John Smith", age: 20},
+  ann: {id: 'ann', name: "Ann Smith", age: 24},
+  pete: {id: 'pete', name: "Pete Peterson", age: 31},
+}
+*/
 // Such function is really handy when working with server data.
 
 // In this task we assume that id is unique. There may be no 
@@ -267,12 +321,12 @@
 
 // TOP Task: Sum of tripled evens
 
-function sumOfTripledEvens(array) {
-    array = array.filter(item => item % 2 === 0);
-    array = array.map(item => item *= 3);
-    array = array.reduce((total, current) => total + current);
-    return array;
+// function sumOfTripledEvens(array) {
+//     array = array.filter(item => item % 2 === 0);
+//     array = array.map(item => item *= 3);
+//     array = array.reduce((total, current) => total + current);
+//     return array;
     
-}
+// }
 
-console.log(sumOfTripledEvens([1, 2, ,3 ,4 ,5, 6, 7, 8]));
+// console.log(sumOfTripledEvens([1, 2, ,3 ,4 ,5, 6, 7, 8]));
